@@ -1,0 +1,93 @@
+<style type="text/css">
+    .gap{
+         margin-top:20px;
+         }
+    .myframe{
+         width:600px;
+         padding:20px;
+         background-color: #fff;
+         border-radius:10px;
+         }
+    .root{
+         display:flex;
+         justify-content:center;
+         align-items:center;
+         margin-top:20px;
+         background-color: #D6A2E8;
+         padding: 20px;
+         }
+    .btnstyle{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/javascript/subcategory.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Display Category By ID</title>
+</head>
+<body>
+<form action="/editdeleteproduct" >
+    <input type="hidden"  value="{{row.2}}"  name="productid"/>
+<div class="root">
+<div class="myframe">
+    <div class="row" style=" display:flex;align-items:center;font-size:16px;letter-spacing:2px;font-weight:bold;margin-bottom:10px;padding-left:15px;padding-right:15px">
+        <img src="/static/productlogo.jpg" width="30"/>
+        Product
+    </div>
+
+    <div class="row gap ">
+        <select id="categoryid" name="categoryid" class="form-control">
+            <option>-Select Category-</option>
+        </select>
+   </div>
+
+    <div class="row gap">
+        <select id="subcategoryid" name="subcategoryid" class="form-control">
+            <option>-select Subcategory-</option>
+        </select>
+    </div>
+
+    <div class="row gap">
+        <input type="text" value="{{row.3}}"  name="productname" class="form-control" placeholder="Name of Product">
+    </div>
+
+    <div class="row gap">
+        <input type="text" value="{{row.4}}" name="pdiscription"  class="form-control" placeholder="Product Discription">
+    </div>
+
+    <div class="row gap" style="display:flex;align-items:center;justify-content:center;">
+           &nbsp;  <img src="/static/{{row.5}}" id="producticon" width="100"/>
+         </div>
+
+
+
+        <div class="row gap">
+               <div class="col btnstyle " >
+        <button type="submit" name="btn" value="edit" class="btn btn-primary w-100" >Edit</button>
+               </div>
+
+               <div class="col btnstyle">
+         <button type="submit" name="btn" value="delete" class="btn btn-primary w-100" >Delete</button>
+               </div>
+        </div>
+        <div class="row gap ">
+            <div class="col btnstyle" style="font-weight:bold;font-size:20px;margin-top:10px">
+                {{msg}}
+            </div>
+
+        </div>
+</div>
+
+</div>
+
+</form>
+
+</body>
+</html>

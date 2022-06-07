@@ -1,0 +1,151 @@
+<style type="text/css">
+                  .root {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: #dfe6e9;
+                    padding: 20px;
+                  }
+
+                  .myframe {
+                    width: 600px;
+                    background-color: #fff;
+                    padding: 20px;
+                    border-radius: 10px;
+                  }
+
+                  .gap {
+                    margin-top: 10px;
+                  }
+
+                  .btnstyle {
+                    display: flex;
+                    justify-content: center;
+                  }
+ </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+                integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+                crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+                integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+                crossorigin="anonymous" />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/javascript/issue.js"></script>
+
+    <meta charset="UTF-8">
+    <title>material management[Issue Interface]</title>
+</head>
+<body style="background-color: #dfe6e9;">
+<form action="/issueproductsubmit" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                  <div class="root">
+                    <div class="myframe">
+                      <div class="row"
+                        style="display: flex; align-items:center; font-size:14px; letter-spacing:2px; font-weight:bold; padding-left : 20px; margin-bottom: 10px;">
+                        <img src="/static/product.png" width="30" style="padding-right: 5px;">
+                        Issue Products
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col">
+                          <input readonly="true" type="text" name="employeeid" value="{{result.employeeid}}"
+                            class="form-control" placeholder="Employee Id">
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col">
+                          <select id="categoryid" name="categoryid" class="form-control">
+                            <option>-Select Category-</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col">
+                          <select id="subcategoryid" name="subcategoryid" class="form-control">
+                            <option>-Select Sub Category-</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col">
+                          <select id="productid" name="productid" class="form-control">
+                            <option>-Select Product-</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col">
+                          <select id="finalproductid" name="finalproductid" class="form-control">
+                            <option>-Select Final Product-</option>
+                          </select>
+                        </div>
+
+                        <div class="col">
+                          <b>Current Stock :</b> <span id="currentstock"></span>
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col">
+                          <select id="demand_employeeid" name="demand_employeeid" class="form-control">
+                            <option>-Select Employee-</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col">
+                          <input type="date" readonly id="dateissue" name="dateissue" class="form-control"
+                            placeholder="Issue Date">
+                        </div>
+                      </div>
+
+
+                      <div class="row gap">
+                        <div class="col">
+                          <input type="text" name="qtyissue" id="qtyissue" class="form-control"
+                            placeholder="Quantity Issued">
+                        </div>
+
+                        <div class="col">
+                          <input type="text" name="remark" class="form-control" placeholder="Remark">
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        <div class="col btnstyle">
+                          <button type="submit" id="btnsubmit" disabled class="btn btn-primary"
+                            style="width: 100%;">Save</button>
+                        </div>
+
+                        <div class="col btnstyle">
+                          <button type="reset" class="btn btn-primary w-100">Reset</button>
+                        </div>
+                      </div>
+
+                      <div class="row gap">
+                        {% ifequal msg "Record Successfully Submitted" %}
+                        <div class="col btnstyle" style="font-size: 18px; font-weight:bold; color: green;">
+                          {{msg}}
+                        </div>
+                        {% endifequal %}
+
+                        {% ifequal msg "Fail to Submit Record" %}
+                        <div class="col btnstyle" style="font-size: 18px; font-weight:bold; color: red;">
+                          {{msg}}
+                        </div>
+                        {% endifequal %}
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </body>
+
+</html>

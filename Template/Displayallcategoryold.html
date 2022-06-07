@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Material Management</title>
+</head>
+<link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+<div class="root" style="display: flex;justify-content: center;align-items: center;
+  background-color: #dfe6e9;padding: 20px;">
+    <div class="myframe" style="width: 90%;
+  background-color: #fffefd;
+  padding: 20px;
+  border-radius: 30px;">
+        <div class="row" style="margin-bottom:10px;font-weight:bold;font-size:16px;letter-spacing:5;">
+            <img src="/static/categoryimage.jpg" width="20"/>
+                List Of Categories
+        </div>
+ <table class="table">
+        <thead>
+          <tr>
+              <th>category ID</th>
+              <th >category Name</th>
+              <th >Category Icon</th>
+              <th >Update</th>
+          </tr>
+        </thead>
+     <tbody>
+          {% for row in rows %}
+          <tr>
+            <th scope="row">{{row.0}}</th>
+            <td>{{row.1}}</td>
+              <td><a  class = "button is-primary modal-button" data="{{row}}" data-target = "#modal1"href="/editcategoryicon?catid={{row.0}}&catname={{row.1}}&caticon={{row.2}}" ><img src="/static/{{row.2}}" width="50"/></a></td>
+              <td><a class = "button is-primary modal-button" data="{{row}}" data-target = "#modal" >Edit/Delete</a></td>
+          </tr>
+
+          {% endfor %}
+     </tbody>
+ </table>
+    </div>
+</div>
+<div id = "modal" class = "modal">
+               <div class = "modal-background"></div>
+               <div class = "modal-content" style="width:50%;background-color: #fff;padding:50px;">
+                    <form action="/editdeletecategory" >
+    <input type="hidden"  id="categoryid"  name="categoryid">
+<div class="root">
+<div class="myframe">
+    <div class="row" style=" display:flex;align-items:center;font-size:16px;letter-spacing:2px;font-weight:bold;margin-bottom:10px;padding-left:15px;padding-right:15px">
+        <img src="/static/categoryimage.jpg" width="30"/>
+        Category
+    </div>
+
+    <div class="row ">
+        <input type="text" id="categoryname"  name="categoryname" class="form-control" placeholder="category name">
+    </div>
+
+    <div class="row gap">
+        <div class="col" style="display:flex;align-items:center;justify-content: center;">
+
+
+           &nbsp;  <img id="picture" name="picture" width="100"/>
+         </div>
+    </div>
+
+
+        <div class="row gap">
+               <div class="col btnstyle " >
+        <button type="submit" name="btn" value="edit" class="btn btn-primary w-100" >Edit</button>
+               </div>
+
+               <div class="col btnstyle">
+         <button type="submit" name="btn" value="delete" class="btn btn-primary w-100" >Delete</button>
+               </div>
+        </div>
+        <div class="row gap ">
+            <div class="col btnstyle" style="font-weight:bold;font-size:20px;margin-top:10px">
+                {{msg}}
+            </div>
+
+        </div>
+</div>
+
+</div>
+
+</form>
+
+                </div></div>
+               <button class = "modal-close is-large" aria-label = "close"></button>
+
+               <script>
+
+               function setdata(data)
+               {
+                           data=data.replace("(","")
+			               data=data.replace(")","")
+			               data=data.replaceAll("'","")
+			               data=data.split(",")
+			              return data
+			              }
+
+
+			            $(".modal-button").click(function() {
+			               var target = $(this).data("target");
+			               var data=$(this).attr('data')
+			               data=setdata(data)
+			               $('#categoryid').val(data[0].trim())
+			               $('#categoryname').val(data[1].trim())
+                           $('#picture').attr('src','/static/'+(data[2].trim()))
+
+			               $("html").addClass("is-clipped");
+			               $(target).addClass("is-active");
+			            });
+
+			            $(".modal-close").click(function() {
+			               $("html").removeClass("is-clipped");
+			               $(this).parent().removeClass("is-active");
+			            });
+      </script>
+
+----
+<div id = "modal1" class = "modal">
+               <div class = "modal-background"></div>
+               <div class = "modal-content" style="width:50%;background-color: #fff;padding:50px;">
+                   <form action="/saveeditcategoryicon" method="post" enctype="multipart/form-data">{% csrf_token %}
+<div class="root">
+    <div class="myframe">
+<input type="hidden"id="categoryid" name="categoryid" class="form-control" value="{{row.0}}"/>
+        <input type="hidden" name="oldicon" class="form-control" value="{{row.2}}">
+
+<center>
+    <div class="row">
+        <div class="col">
+            <h3>Edit Category Icon</h3>
+        </div></div>
+    <div class="row">
+        <div class="col">
+            <h4>Category Name</h4>&nbsp; {{row.1}}
+        </div></div>
+    <div class="row">
+        <div class="col">
+            <img src="/static/{{row.2}}" id="categoryicon" width="30%"/>
+        </div></div>
+    <div class="row">
+        <div class="col">
+            <b>Select image you want to replace</b><br><br>
+        </div></div>
+    <div class="row">
+        <div class="col">
+            <input type="file" required id="pic"class="form-control" name="categoryicon" >
+        </div>
+        <div class="col">
+            <input type="submit" class="form-control" value="Save">
+        </div>
+    </div>
+</center>
+    </div>
+</div>
+</form>
+               </div></div>
+
+               <button class = "modal-close is-large" aria-label = "close"></button>
+
+<script>
+
+               function setdata(data)
+               {
+                           data=data.replace("(","")
+			               data=data.replace(")","")
+			               data=data.replaceAll("'","")
+			               data=data.split(",")
+			              return data
+			              }
+
+
+			            $(".modal-button").click(function() {
+			               var target = $(this).data("target");
+			               var data=$(this).attr('data')
+			               data=setdata(data)
+			               $('#categoryid').val(data[0].trim())
+                           $('#categoryname').val(data[1].trim())
+                           $('#categoryicon').attr('src','/static/'+(data[2].trim()))
+
+			               $("html").addClass("is-clipped");
+			               $(target).addClass("is-active");
+			            });
+
+			            $(".modal-close").click(function() {
+			               $("html").removeClass("is-clipped");
+			               $(this).parent().removeClass("is-active");
+			            });
+      </script>
+
+</body>
+</html>

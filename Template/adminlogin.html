@@ -1,0 +1,101 @@
+<style xmlns:justify-content="http://www.w3.org/1999/xhtml">
+    .root{
+          display:flex;
+         justify-content:center;
+         align-items:center;
+         margin:20px;
+         background-color: #ffffff;
+
+          }
+    .leftframe{
+            width:65%;
+             padding:55px;
+             margin:20px;
+               
+            background-color:#BDC581;
+               }
+
+    .rightframe{
+      width: 30%;
+      margin:20px;
+
+      background-color: F4A460;
+
+      padding: 40px;
+      border-radius: 10px;
+
+               }
+    .gap{
+         margin-top:10px;
+         }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin login</title>
+</head>
+<body style="background-color:B2DFDB;">
+<form action="/checkadminlogin" method="post" enctype="application/x-www-form-urlencoded">  {% csrf_token%}
+    <div class="root">
+     <div class="leftframe">
+         <div class="row">
+             <div class="col" style=font-weight:bold;font-size:80px;justify-content:center;">
+       Material Management
+         </div>
+             <div class="col">
+                 <img src="/static/gearicon2.png" width="100%">
+             </div>
+     </div>
+     </div>
+
+
+    <div class="rightframe" style="margin-left:5px;align-items:center;">
+
+        <div class="row" style="justify-content: center; ">
+          <img src="/static/admin.png" width="80px" height="80px" style="border-radius: 40px;">
+        </div>
+        <div class="row" style=" justify-content: center;font-weight:bold;">
+            Admin login
+        </div>
+        <div class="row" style=" margin-left:25px;font-weight:bold;">
+            Username
+        </div>
+        <div class="row" style="width:40%;margin-left:25px;" >
+            <input type="email" name="emailid" class="form-control" placeholder="enter email id">
+        </div>
+
+         <div class="row" style=" margin-left:25px;font-weight:bold;">
+            Password
+        </div>
+
+        <div class="row" style="width:45%;margin-left:25px;" >
+            <input type="password" name="password" class="form-control" placeholder="enter Password">
+        </div>
+
+         <div class="row gap" style="width:20%;margin-left:25px;" >
+       <button type="submit" class="btn btn-success">Submit</button>
+         </div>
+         <div class="row" style="justify-content: center;font-weight:bold; font-size:15px;">
+            {{msg}}
+        </div>
+
+
+
+
+
+</div>
+
+ </div>
+</form>
+</body>
+</html>

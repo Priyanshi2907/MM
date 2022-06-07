@@ -1,0 +1,111 @@
+<style type="text/css">
+    .gap{
+         margin-top:20px;
+         }
+    .myframe{
+         width:600px;
+         padding:20px;
+         background-color: #fff;
+         border-radius:10px;
+         }
+    .root{
+         display:flex;
+         justify-content:center;
+         align-items:center;
+         margin-top:20px;
+         background-color: #D6A2E8;
+         padding: 20px;
+         }
+    .btnstyle{
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            }
+</style>
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="/static/javascript/purchase.js"></script>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Material Management[Purchase]</title>
+</head>
+<body>
+<form action="/purchasesubmit" method="post" enctype="multipart/form-data"> {% csrf_token%}
+<div class="root">
+<div class="myframe">
+    <div class="row" style=" display:flex;align-items:center;font-size:18px;letter-spacing:1px;font-weight:bold;margin-bottom:10px">
+        <img src="/static/productlogo.jpg" width="60"/>
+        Purchase
+    </div>
+
+    <div class="row gap">
+        <input type="text" id="employeeid" name="employeeid" class="form-control" placeholder="Employee ID">
+    </div>
+
+    <div class="row gap">
+        <div class="col">
+        <select id="categoryid" name="categoryid" class="form-control">
+            <option>-select Category-</option>
+        </select>
+        </div>
+
+        <div class="col">
+            <select id="subcategoryid" name="subcategoryid" class="form-control">
+            <option>-select Subcategory-</option>
+            </select>
+        </div></div>
+
+        <div class="row gap">
+        <div class="col">
+        <select id="productid" name="productid" class="form-control">
+            <option>-Select Product-</option>
+        </select>
+      </div>
+
+         <div class="col">
+        <select id="finalproductid" name="finalproductid" class="form-control">
+            <option>-Select FinalProduct-</option>
+        </select>
+         </div></div>
+
+    <div class="row gap">
+              <div class="col">
+                <input type="date" class="form-control" name="date" placeholder="Date of Purchase">
+              </div>
+
+              <div class="col">
+              <select id="supplierid" name="supplierid" class="form-control">
+                  <option>-Supplier ID-</option>
+              </select>
+              </div></div>
+    <div class="row gap">
+        <div class="col">
+             <input type="text" name="stock" class="form-control" placeholder="Stock" value="0">
+        </div>
+        <div class="col">
+                 <input type="text" name="amount" class="form-control" placeholder="amount" >
+        </div></div>
+    <div class="row gap">
+               <div class="col btnstyle " >
+        <button type="submit" class="btn btn-primary w-100" >Save</button>
+               </div>
+
+               <div class="col btnstyle">
+         <button type="reset" class="btn btn-primary w-100" >Reset</button>
+               </div>
+    </div>
+        <div class="row gap ">
+            <div class="col btnstyle" style="font-weight:bold;font-size:20px;margin-top:10px">
+                {{msg}}
+            </div>
+        </div>
+</div>
+</div>
+</form>
+</body>
+</html>

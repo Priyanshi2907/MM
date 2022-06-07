@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display product</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<body>
+<div class="root" style="display: flex;justify-content: center;align-items: center;
+  background-color: #dfe6e9;padding: 20px;">
+    <div class="myframe" style="width: 95%;
+  background-color: #fffefd;
+  padding: 20px;
+  border-radius: 30px;">
+        <div class="row" style="margin-bottom:10px;font-weight:bold;font-size:16px;letter-spacing:5;">
+            <img src="/static/productlogo.jpg" width="20"/>
+                List Of FinalProducts
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                  <th>category ID</th>
+                  <th >Subcategory ID</th>
+                  <th >Product ID</th>
+                   <th >Final Product ID</th>
+                  <th >Final Product Name</th>
+                  <th >Size</th>
+                  <th >Size Unit</th>
+                  <th >Weight</th>
+                  <th >Weight Unit</th>
+                  <th >Colour</th>
+                  <th >Prize</th>
+                  <th >Stock</th>
+                  <th >Icon</th>
+                  <th>Update</th>
+              </tr>
+
+            </thead>
+         <tbody>
+             {% for row in rows%}
+             <tr>
+                 <td>{{row.0}}<br>{{row.13}}</td>
+                 <td>{{row.1}}<br>{{row.14}}</td>
+                 <td>{{row.2}}<br>{{row.15}}</td>
+                 <td scope="row">{{row.3}}</td>
+                 <td>{{row.4}}</td>
+                 <td>{{row.5}}</td>
+                 <td>{{row.6}}</td>
+                 <td>{{row.7}}</td>
+                 <td>{{row.8}}</td>
+                 <td>{{row.9}}</td>
+                 <td>{{row.10}}</td>
+                 <td>{{row.11}}</td>
+                 <td><a href="editfinalproducticon?finalproductid={{row.3}}&finalproductname={{row.4}}&icon={{row.12}}"><img src="/static/{{row.12}}" width="40"></a></td>
+                 <td><a href="displayfinalproductbyid?finalproductid={{row.3}}">Edit/Delete</a></td>
+             </tr>
+             {% endfor %}
+             </tbody>
+             </table>
+             </div>
+             </div>
+             </body>
+             </html>

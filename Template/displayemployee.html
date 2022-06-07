@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" 
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+   <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/static/assets/img/favicon.png">
+  <title>
+    Material Dashboard 2 by Creative Tim
+  </title>
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+  <!-- Nucleo Icons -->
+  <link href="/static/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/static/assets/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- CSS Files -->
+  <link id="pagestyle" href="/static/assets/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+</head>
+
+    <title>Material Management</title>
+
+<body>
+<div class="container-fluid py-4" >
+<div class="row">
+        <div class="col-12">
+          <div class="card my-4">
+            <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+              <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
+                <h6 class="text-white text-capitalize ps-3">List Of Employees</h6>
+              </div>
+            </div>
+            <div class="card-body px-0 pb-2">
+
+
+
+  <div class="myframe" style="width: 100%;
+  background-color: #fffefd;
+
+  border-radius: 5px;">
+
+  <div class="row" style="display: flex;margin-bottom: 10px;align-items: center;
+  font-size: 10;letter-spacing: 10;font-weight: bold;padding-left: 20px;">
+    List of Employees
+
+    <table class="table">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th >Name</th>
+              <th >Birth Date</th>
+              <th >Permanent<br>Address</th>
+              <th >Current<br>Address</th>
+              <th >Contact<br>Details</th>
+              <th >Picture</th>
+              <th >Update</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+          <tr>
+            <th scope="row">{{row.0}}</th>
+            <td>{{row.1}} {{row.2}}<br>{{row.3}}</td>
+            <td>{{row.4}}</td>
+              <td>{{row.5}}<br>{{row.14}},{{row.15}}</td>
+              <td>{{row.8}}</td>
+              <td>{{row.9}}<br>{{row.10}}</td>
+              <td><a href="/editemployeepicture?empid={{row.0}}&Firstname={{row.1}}&lastname={{row.2}}&picture={{row.12}}"><img src="/static/{{row.12}}" width="50"/></a><br>{{row.11}}</td>
+              <td><a href="/displayemployeebyid?empid={{row.0}}">Edit/Delete</a></td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+    </table>
+    </div>
+  </div>
+              </div></div></div></div></div></div>
+</body>
+</html>
+
+
+
+

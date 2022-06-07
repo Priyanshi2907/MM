@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Material Management</title>
+</head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<body>
+<div class="root" style="display: flex;justify-content: center;align-items: center;
+  background-color: #dfe6e9;padding: 20px;">
+    <div class="myframe" style="width: 90%;
+  background-color: #fffefd;
+  padding: 20px;
+  border-radius: 30px;">
+        <div class="row" style="margin-bottom:10px;font-weight:bold;font-size:16px;letter-spacing:5;">
+            <img src="/static/categoryimage.jpg" width="20"/>
+                List Of Subcategories
+        </div>
+        <table class="table">
+            <thead>
+              <tr>
+                  <th>category ID</th>
+                  <th >Subcategory ID</th>
+                  <th >SubCategory Name</th>
+                  <th >Discription</th>
+                  <th >Icon</th>
+                  <th >Update</th>              
+              </tr>
+            </thead>
+         <tbody>
+             {% for row in rows%}
+             <tr>
+                 <td>{{row.0}}<br>{{row.5}}</td>
+                 <th scope="row">{{row.1}}</th>
+                 <td>{{row.2}}</td>
+                 <td>{{row.3}}</td>
+                 <td><a href="editsubcategoryicon?subcategoryid={{row.1}}&subcategoryname={{row.2}}&subcategoryicon={{row.4}}"><img src="/static/{{row.4}}" width="40"></a></td>
+                 <td><a href="displaysubcategorybyid?subcategoryid={{row.1}}">Edit/Delete</a></td>
+             </tr>
+             {% endfor %}
+             </tbody>
+             </table>
+             </div>
+             </div>
+             </body>
+             </html>
+             
