@@ -62,7 +62,7 @@ def displaycategorybyid(request):
 
 def editdeletecategory(request):
     btn=request.GET['btn']
-    catid=request.GET['catid']
+    catid=request.GET['categoryid']
     if(btn=='edit'):
         categoryname=request.GET['categoryname']
         try:

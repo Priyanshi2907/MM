@@ -70,9 +70,9 @@ def employeesubmit(request):
             F.write(chunk)
         F.close()
         db.close()
-        result=SendSms.SendMessage("Hi {} Your Passwird is {}".format(firstname,password),mobilenumber)
+        result=SendSms.SendMessage("Hi {} Your Password is {}".format(firstname,password),mobilenumber)
         print(result.json())
-        EmailService.SendMail(emailaddress,"Hi {} Your Passwird is {}".format(firstname,password))
+        EmailService.SendMail(emailaddress,"Hi {} Your Password is {}".format(firstname,password))
         return render(request,'EmployeeInterface.html',{'msg':'Record Succesfully Submitted'})
 
     except Exception as e:
@@ -153,7 +153,7 @@ def editdeleterecord(request):
 def editemployeepicture(request):
     try:
         empid = request.GET['empid']
-        firstname = request.GET['Firstname']
+        firstname = request.GET['firstname']
         lastname = request.GET['lastname']
         picture=request.GET['picture']
         row=[empid,firstname,lastname,picture]
@@ -173,7 +173,7 @@ def saveeditpicture(request):
         db, cmd = Pool.ConnectionPool()
         cmd.execute(q)
         db.commit()
-        F = open("E:/MM/assets/" + filename)
+        F = open("E:/MM/assets/" + filename,"wb")
         for chunk in picture.chunks():
             F.write(chunk)
         F.close()

@@ -3,7 +3,7 @@ from. import PoolDict
 
 def adminlogin(request):
     try:
-        result=request.session['ADMIN']
+        #result=request.session['ADMIN']
         return render(request, 'admindashboard.html')
     except Exception as e:
         return render(request,"adminlogin.html")
