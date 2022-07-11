@@ -1,1 +1,1 @@
-material management is a project using python with django framework
+Made a( python+django)project, which is about the management of the tools of the products as well as the employees in the industry on a high scale, through a Django platform in which blackened is done by python and frontend by HTML,JS, bootstrap
